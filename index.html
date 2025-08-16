@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Registration Form</title>
+  <link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+
+  <div class="form-container">
+    <h2>Registration Form</h2>
+    <form id="registrationForm">
+      
+      <label for="lastName">First Name</label>
+      <input type="text" id="firstName" name="firstName" required>
+      
+      <label for="firstName">Middle Name</label>
+      <input type="text" id="middleName" name="middleName" required>
+      
+      <label for="middleName">Last Name</label>
+      <input type="text" id="lastName" name="lastName" required>
+      
+      <label for="email">Email Address</label>
+      <input type="email" id="email" name="email" required>
+      
+      <label for="contactNumber">Contact Number</label>
+      <input type="text" id="contactNumber" name="contactNumber" required>
+
+      <label for="contactNumber">Batch</label>
+      <input type="text" id="batch" name="batch" required>
+      
+      <label for="idNumber">ID Number</label>
+      <input type="text" id="idNumber" name="idNumber" required>
+
+      <label for="technology">Technology</label>
+      <input type="text" id="technology" name="technology" required>
+
+     <div class="button-group">
+  <button type="submit">Register</button>
+  <button type="reset">Clear</button>
+</div>
+
+    </form>
+    <div id="errorMessage" class="error-message"></div>
+  </div>
+
+  <script src="assets/js/script.js"></script>
+</body>
+</html>
