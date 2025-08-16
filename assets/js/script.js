@@ -3,67 +3,159 @@ document.getElementById('registrationForm').addEventListener('submit', function(
     event.preventDefault(); 
   
     
-    let lastName = document.getElementById('firstName').value;
-    let firstName = document.getElementById('middleName').value;
-    let middleName = document.getElementById('lastName').value;
-    let email = document.getElementById('email').value;
-    let contactNumber = document.getElementById('contactNumber').value;
-    let batch = document.getElementById('batch').value;
-    let idNumber = document.getElementById('idNumber').value;
-    let technology = document.getElementById("technology").value;
-    let errorMessage = document.getElementById('errorMessage');
-  
    
+const firstNameInput = document.getElementById('firstName');
+const middleNameInput = document.getElementById('middleName');
+const lastNameInput = document.getElementById('lastName');
+const emailInput = document.getElementById('email');
+const contactNumberInput = document.getElementById('contactNumber');
+const batchInput = document.getElementById('batch');
+const idNumberInput = document.getElementById('idNumber');
+const technologyInput = document.getElementById('technology');
+const errorMessage = document.getElementById('errorMessage');
+
+
+const nameRegex = /^[A-Za-z\s]+$/;
+const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/;
+const contactNumberRegex = /^\d{11}$/;
+const batchRegex = /^20\d{2}$/;
+const technologyRegex = /^[A-Za-z\s]+$/;
+
+
+
+
+
+firstNameInput.addEventListener('input', function () {
+  validateInput(firstNameInput, nameRegex, 'First Name');
+
+  function validateInput(input, regex, message) {
+  if (!input.value) {
+    errorMessage.innerHTML = `${message} is required!`;
+    input.classList.add('error');
+  } else if (!regex.test(input.value)) {
+    errorMessage.innerHTML = `this field must contain letters only!`;
+    input.classList.add('error');
+  } else {
     errorMessage.innerHTML = '';
+    input.classList.remove('error');
+  }
+}
+});
+
+middleNameInput.addEventListener('input', function () {
+  validateInput(middleNameInput, nameRegex, 'Middle Name');
+
+  function validateInput(input, regex, message) {
+  if (!input.value) {
+    errorMessage.innerHTML = `${message} is required!`;
+    input.classList.add('error');
+  } else if (!regex.test(input.value)) {
+    errorMessage.innerHTML = `this field must contain letters only!`;
+    input.classList.add('error');
+  } else {
+    errorMessage.innerHTML = '';
+    input.classList.remove('error');
+  }
+}
+});
+
+lastNameInput.addEventListener('input', function () {
+  validateInput(lastNameInput, nameRegex, 'Last Name');
+
+  function validateInput(input, regex, message) {
+  if (!input.value) {
+    errorMessage.innerHTML = `${message} is required!`;
+    input.classList.add('error');
+  } else if (!regex.test(input.value)) {
+    errorMessage.innerHTML = `this field must contain letters only!`;
+    input.classList.add('error');
+  } else {
+    errorMessage.innerHTML = '';
+    input.classList.remove('error');
+  }
+}
+});
+
+emailInput.addEventListener('input', function () {
+  validateInput(emailInput, emailRegex, 'Email Address');
+
+  function validateInput(input, regex, message) {
+  if (!input.value) {
+    errorMessage.innerHTML = `${message} is required!`;
+    input.classList.add('error');
+  } else if (!regex.test(input.value)) {
+    errorMessage.innerHTML = `this field must contain letters and @ sign only!`;
+    input.classList.add('error');
+  } else {
+    errorMessage.innerHTML = '';
+    input.classList.remove('error');
+  }
+}
+});
+
+contactNumberInput.addEventListener('input', function () {
+  validateInput(contactNumberInput, contactNumberRegex, 'Contact Number');
+
+  function validateInput(input, regex, message) {
+  if (!input.value) {
+    errorMessage.innerHTML = `${message} is required!`;
+    input.classList.add('error');
+  } else if (!regex.test(input.value)) {
+    errorMessage.innerHTML = `this field must contain 11 numbers only!`;
+    input.classList.add('error');
+  } else {
+    errorMessage.innerHTML = '';
+    input.classList.remove('error');
+  }
+}
+});
+
+
+batchInput.addEventListener('input', function () {
+  if (!batchInput.value) {
+    errorMessage.innerHTML = 'Batch is required!';
+    batchInput.classList.add('error');
+  } else {
+    errorMessage.innerHTML = 'This Field must contain numbers only! ';
+    batchInput.classList.remove('error');
+  }
+});
+
+idNumberInput.addEventListener('input', function () {
+  if (!idNumberInput.value) {
+    errorMessage.innerHTML = 'ID Number is required!';
+    idNumberInput.classList.add('error');
+  } else {
+    errorMessage.innerHTML = '';
+    idNumberInput.classList.remove('error');
+  }
+});
+
+technologyInput.addEventListener('input', function () {
+  if (!technologyInput.value) {
+    errorMessage.innerHTML = 'This field must contain letters Only!';
+    technologyInput.classList.add('error');
+  } else {
+    errorMessage.innerHTML = '';
+    technologyInput.classList.remove('error');
+  }
+});
+
+
+document.getElementById('registrationForm').addEventListener('submit', function (event) {
+  event.preventDefault();
+
   
-   
-    let nameRegex = /^[A-Za-z\s]+$/;
-    let emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/;
-    let contactNumberRegex = /^\d{11}$/;
-    let idNumberRegex = /^.*$/;
-  
-   
-    if (!lastName || !firstName || !middleName || !email || !contactNumber || !idNumber) {
-      errorMessage.innerHTML = "All fields are required!";
-      return;
-    }
-  
-   
-    if (!nameRegex.test(lastName) || !nameRegex.test(firstName) || !nameRegex.test(middleName)) {
-      errorMessage.innerHTML = "Name fields should only contain letters and spaces!";
-      return;
-    }
-  
-    
-    if (!emailRegex.test(email)) {
-      errorMessage.innerHTML = "Please enter a valid email address!";
-      return;
-    }
-  
-    
-    if (!contactNumberRegex.test(contactNumber)) {
-      errorMessage.innerHTML = "Contact number should be 11 digits!";
-      return;
-    }
-  
-    
-    if (!idNumberRegex.test(idNumber)) {
-      errorMessage.innerHTML = "ID number should only symbol and contain digits!";
-      return;
-    }
-  
-   
-    localStorage.setItem('registrationData', JSON.stringify({
-      firstName,
-      middleName,
-      lastName,
-      email,
-      contactNumber,
-      batch,
-      idNumber,
-      technology,
-    }));
-  
-   
-  });
-  
+  const formData = {
+    firstName: firstNameInput.value,
+    middleName: middleNameInput.value,
+    lastName: lastNameInput.value,
+    email: emailInput.value,
+    contactNumber: contactNumberInput.value,
+    batch: batchInput.value,
+    idNumber: idNumberInput.value,
+    technology: technologyInput.value,
+  };
+
+  localStorage.setItem('registrationData', JSON.stringify(formData));
+});
